@@ -350,7 +350,7 @@ class Parser:
 	def term(self):
 		return self.bin_op(self.factor, (TT_MUL, TT_DIV))
 
-	def expr(self
+	def expr(self):
 		res = ParseResult()
 
 		if self.current_tok.matches(TT_KEYWORD, '#'):
