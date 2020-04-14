@@ -222,7 +222,7 @@ class Lexer:
 			id_str += self.current_char
 			self.advance()
 
-		tok_type = TT_KEYWORD if id_str in KEYWORDS else TT_IDENTIFIER
+		tok_type = TT_KEYWORD if id_str in KEYWORDS else TT_IDENTIF
 		return Token(tok_type, id_str, pos_start, self.pos)
 
 #<<<<<<<<<<<<<<<<<<<<NODES>>>>>>>>>>>>>>>>>>>>>>
@@ -314,6 +314,8 @@ class Parser:
 			res.register(self.advance())
 			return res.success(NumberNode(tok))
 
+		elif tok.type == TT_IDENTIF
+
 		elif tok.type == TT_LPAREN:
 			res.register(self.advance())
 			expr = res.register(self.expr())
@@ -356,7 +358,7 @@ class Parser:
 		if self.current_tok.matches(TT_KEYWORD, '#'):
 			res.register(self.advance())
 
-			if self.current_tok.type != TT_IDENTIFIER:
+			if self.current_tok.type != TT_IDENTIF:
 				return res.failure(InvalidSyntaxError(
 					self.current_tok.pos_start, self.current_tok.pos_end,
 					"Expected Identifier"
