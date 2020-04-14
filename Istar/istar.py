@@ -237,6 +237,13 @@ class NumberNode:
 	def __repr__(self):
 		return f'{self.tok}'
 
+class varAcessNode:
+	def __init__(self, var_name_tok):
+		self.var_name_tok = var_name_tok
+
+		self.pos_start = self.var_name_tok.pos_start
+		self.pos_end = self.var_name_tok.pos_end
+
 class BinOpNode:
 	def __init__(self, left_node, op_tok, right_node):
 		self.left_node = left_node
@@ -316,7 +323,7 @@ class Parser:
 
 		elif tok.type == TT_IDENTIF:
 			res.register(advance())
-			return res.success(VarAcessNODE(tok))
+			return res.success(varAcessNode(tok))
 
 		elif tok.type == TT_LPAREN:
 			res.register(self.advance())
