@@ -351,9 +351,31 @@ class Parser:
 		return self.bin_op(self.factor, (TT_MUL, TT_DIV))
 
 	def expr(self
+		res = ParseResult()
 
 		if self.current_tok.matches(TT_KEYWORD, '#'):
+			res.register(self.advance())
 
+			if self.current_tok.type != TT_IDENTIFIER:
+				return res.failure(InvalidSyntaxError(
+					self.current_tok.pos_start, self.current_tok.pos_end,
+					"Expected Identifier"
+				))
+
+			var_name = self.current_tok
+			res.register(advance())
+
+			if self.current_tok.type != TT_EQ:
+				return res.failure(InvalidSyntaxError(
+					self.current_tok.pos_start, self.current_tok.pos_end,
+					"Expected '=''"
+				))
+
+			res.register(advance())
+			expr = res.register(self.expr())
+
+			if res.error: return res
+			return res.success(VarAssignNode(var_name, expr))
 
 		return self.bin_op(self.term, (TT_PLUS, TT_MINUS))
 
