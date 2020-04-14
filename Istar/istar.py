@@ -281,7 +281,7 @@ class ParseResult:
 	def failure(self, error):
 		self.error = error
 		return self
-#<<<<<<<<<<<<<<<<PARSER>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#<<<<<<<<<<<<<<<<PARSER>>>>>>>>>>>>>>>>>>>>
 
 class Parser:
 	def __init__(self, tokens):
