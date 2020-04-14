@@ -1,4 +1,4 @@
-#Lexer (token genorator) for I*
+#I* a programming language
 #by ice100k
 #08/04/2020
 
@@ -117,6 +117,10 @@ class Token:
 
 		if pos_end:
 			self.pos_end = pos_end
+
+	def matches(self, type_, value):
+		return self.type == value_ and self.value == value
+
 
 	def __repr__(self):
 		if self.value: return f'{self.type}:{self.value}'
@@ -346,7 +350,11 @@ class Parser:
 	def term(self):
 		return self.bin_op(self.factor, (TT_MUL, TT_DIV))
 
-	def expr(self):
+	def expr(self
+
+		if self.current_tok.matches(TT_KEYWORD, '#'):
+
+
 		return self.bin_op(self.term, (TT_PLUS, TT_MINUS))
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -361,7 +369,7 @@ class Parser:
 		if res.error: return res
 
 		while self.current_tok.type in ops:
-			
+
 			op_tok = self.current_tok
 			res.register(self.advance())
 			right = res.register(func_b())
