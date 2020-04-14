@@ -314,7 +314,9 @@ class Parser:
 			res.register(self.advance())
 			return res.success(NumberNode(tok))
 
-		elif tok.type == TT_IDENTIF
+		elif tok.type == TT_IDENTIF:
+			res.register(advance())
+			return res.success(VarAcessNODE(tok))
 
 		elif tok.type == TT_LPAREN:
 			res.register(self.advance())
