@@ -496,6 +496,7 @@ class Context:
 		self.display_name = display_name
 		self.parent = parent
 		self.parent_entry_pos = parent_entry_pos
+		self.symbol_table = None
 
 #<<<<<<<<<<<<<<<<<<<<<<<<SYMBOL TABLE>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -534,6 +535,25 @@ class Interpreter:
 		return RTResult().success(
 			Number(node.tok.value).set_context(context).set_pos(node.pos_start, node.pos_end)
 		)
+
+	def visit_varAcessNode(self, node, context):
+		res = RTResult()
+		var_name = node.var_name_tok.value
+
+		value = context.symbolTable.get(var_name)
+
+		if not value:
+			return res.failure(RTError(
+				node.pos_start, node.pos_end,
+				f"'{var_name}' is nor defined",
+				context
+			))
+
+		return res.success(value)
+
+	def visit_varAssignNode(self, node, context):
+		
+
 
 	def visit_BinOpNode(self, node, context):
 		res = RTResult()
