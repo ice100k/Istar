@@ -8,7 +8,11 @@ while True:
 
 	text = input("Istar:  ")
 
-	result, error = istar.run('<stdin>', text)
+	if text == "quit()":
+		quit()
+	else:
 
-	if error: print(error.as_string())
-	else: print(result)
+		result, error = istar.run('<stdin>', text)
+
+		if error: print(error.as_string())
+		else: print(result)
