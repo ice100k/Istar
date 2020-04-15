@@ -244,6 +244,16 @@ class varAcessNode:
 		self.pos_start = self.var_name_tok.pos_start
 		self.pos_end = self.var_name_tok.pos_end
 
+class varAssignNode:
+	def __init__(self, var_name_tok, value_node):
+		self.var_name_tok = var_name_tok
+		self.value_node = value_node
+
+		self.pos_start = self.var_name_tok.pos_start
+		self.pos_end = self.value_node.pos_end
+
+class
+
 class BinOpNode:
 	def __init__(self, left_node, op_tok, right_node):
 		self.left_node = left_node
@@ -386,7 +396,7 @@ class Parser:
 			expr = res.register(self.expr())
 
 			if res.error: return res
-			return res.success(VarAssignNode(var_name, expr))
+			return res.success(varAssignNode(var_name, expr))
 
 		return self.bin_op(self.term, (TT_PLUS, TT_MINUS))
 
@@ -486,6 +496,26 @@ class Context:
 		self.display_name = display_name
 		self.parent = parent
 		self.parent_entry_pos = parent_entry_pos
+
+#<<<<<<<<<<<<<<<<<<<<<<<<SYMBOL TABLE>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+class symbolTable:
+	def __init__(self):
+		self.symbols = {}
+		self.parent = None
+
+	def get(self, name):
+		value = self.symbols.get(name, None)
+
+		if value == None and self.parent:
+			return self.parent.get(name)
+		return value
+
+	def set(self, name, value):
+		self.symbols[name] = value
+
+	def remove(self, name):
+		del self.symbols[name]
 
 #<<<<<<<<<<<<<<<<<<<<<<<<INTERPRETER>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
