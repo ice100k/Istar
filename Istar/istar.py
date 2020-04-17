@@ -194,7 +194,7 @@ class Lexer:
 
 			elif self.current_char == '!':
 				tok, error = self.make_not_equals()
-				if error: return [] error
+				if error: return [], error
 				tokens.append(tok)
 
 			elif self.current_char == '=':
@@ -247,7 +247,7 @@ class Lexer:
 		pos_start = self.pos.copy()
 		self.advance()
 
-		if self.current_char == '='
+		if self.current_char == '=':
 			self.advance()
 			return Token(TT_NE, pos_start=pos_start, pos_end=self.pos), None
 
