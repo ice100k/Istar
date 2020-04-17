@@ -10,8 +10,9 @@ while True:
 
 	if text == "quit()":
 		quit()
-	else:
 
+	else:
+		
 		result, error = istar.run('<stdin>', text)
 
 		if error: print(error.as_string())
