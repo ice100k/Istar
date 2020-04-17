@@ -106,7 +106,11 @@ TT_GT E             = 'GTE'
 TT_EOF				= 'EOF'
 
 KEYWORDS = [
-	'#'
+	'#',
+	'and',
+	'or',
+	'not'
+
 ]
 
 class Token:
