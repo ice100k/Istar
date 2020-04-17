@@ -33,6 +33,10 @@ class IllegalCharError(Error):
 	def __init__(self, pos_start, pos_end, details):
 		super().__init__(pos_start, pos_end, 'Illegal Character', details)
 
+class ExpectedCharError(Error):
+	def __init__(self, pos_start, pos_end, details):
+		super().__init__(pos_start, pos_end, 'Expected Character', details)
+
 class InvalidSyntaxError(Error):
 	def __init__(self, pos_start, pos_end, details=''):
 		super().__init__(pos_start, pos_end, 'Invalid Syntax', details)
@@ -102,7 +106,7 @@ TT_NE               = 'NE'
 TT_LT                = 'LT'
 TT_GT               = 'GT'
 TT_LTE               = 'LTE'
-TT_GT E             = 'GTE'
+TT_GTE             = 'GTE'
 TT_EOF				= 'EOF'
 
 KEYWORDS = [
@@ -180,10 +184,6 @@ class Lexer:
 				tokens.append(Token(TT_POW, pos_start=self.pos))
 				self.advance()
 
-			elif self.current_char == '=':
-				tokens.append(Token(TT_EQ, pos_start=self.pos))
-				self.advance()
-
 			elif self.current_char == '(':
 				tokens.append(Token(TT_LPAREN, pos_start=self.pos))
 				self.advance()
@@ -191,6 +191,20 @@ class Lexer:
 			elif self.current_char == ')':
 				tokens.append(Token(TT_RPAREN, pos_start=self.pos))
 				self.advance()
+
+			elif self.current_char == '!':
+				tok, error = self.make_not_equals()
+				if error: return [] error
+				tokens.append(tok)
+
+			elif self.current_char == '=':
+				tokens.append(self.make_equals())
+
+			elif self.current_char == '<':
+				tokens.append(self.make_less_than())
+
+			elif self.current_char == '>':
+				tokens.append(self.make_greater_than())
 
 			else:
 				pos_start = self.pos.copy()
@@ -228,6 +242,50 @@ class Lexer:
 
 		tok_type = TT_KEYWORD if id_str in KEYWORDS else TT_IDENTIFIER
 		return Token(tok_type, id_str, pos_start, self.pos)
+
+	def make_not_equals(self):
+		pos_start = self.pos.copy()
+		self.advance()
+
+		if self.current_char == '='
+			self.advance()
+			return Token(TT_NE, pos_start=pos_start, pos_end=self.pos), None
+
+		self.advance()
+		return None, ExpectedCharError(pos_start, pos_end, "'=' (after '!')")
+
+	def make_equals(self):
+		tok_type = TT_EQ
+
+		pos_start = self.pos.copy()
+		self.advance()
+
+		if self.current_char == '=':
+			tok_type = TT_EE
+
+		return Token(tok_type, pos_start=pos_start, pos_end=self.pos)
+
+	def make_less_than(self):
+		tok_type = TT_LT
+
+		pos_start = self.pos.copy()
+		self.advance()
+
+		if self.current_char == '=':
+			tok_type = TT_LTE
+
+		return Token(tok_type, pos_start=pos_start, pos_end=self.pos)
+
+	def make_greater_than(self):
+		tok_type = TT_GT
+
+		pos_start = self.pos.copy()
+		self.advance()
+
+		if self.current_char == '=':
+			tok_type = TT_GTE
+
+		return Token(tok_type, pos_start=pos_start, pos_end=self.pos)
 
 #<<<<<<<<<<<<<<<<<<<<NODES>>>>>>>>>>>>>>>>>>>>
 
