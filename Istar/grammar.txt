@@ -21,6 +21,10 @@ LOWEST PRIORITY RULES
 					              : LPAREN expr RPAREN
 												: IF expr
 
+IF expr							 : KEYWORD: If expr KEYWORD: then expr
+												 			(KEYWORD: elif expr KEYWORD: then expr)*
+															(KEYWORD: else expr)?
+
 HIGHEST PRIORITY RULES
 
 NOTE: YOU CAN EDIT THIS FILE IT WILL HABE NO IMPACT ON ANY OF THE PROGRAMS FUNCTIONS
