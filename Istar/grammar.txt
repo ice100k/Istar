@@ -19,6 +19,7 @@ LOWEST PRIORITY RULES
 
 	atom 	             : INT|FLOAT|IDENTIFIER
 					              : LPAREN expr RPAREN
+												: IF expr
 
 HIGHEST PRIORITY RULES
 
