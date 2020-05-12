@@ -17,7 +17,6 @@ LETTERS_DIGITS = LETTERS + DIGITS
 
 #<<<<<<<<<<<<<<<<<<<<<<ERRORS>>>>>>>>>>>>>>>>>>>>>
 
-
 class Error:
 	def __init__(self, pos_start, pos_end, error_name, details):
 		self.pos_start = pos_start
