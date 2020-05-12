@@ -115,11 +115,13 @@ TT_LTE				    = 'LTE'
 TT_GTE				  = 'GTE'
 TT_EOF				   = 'EOF'
 
-KEYWorDS = [
+KEYWORDS = [
 	'#',
 	'and',
 	'or',
-	'not'
+	'not',
+	'if',
+
 ]
 
 class Token:
@@ -247,7 +249,7 @@ class Lexer:
 			id_str += self.current_char
 			self.advance()
 
-		tok_type = TT_KEYWORD if id_str in KEYWorDS else TT_IDENTIFIER
+		tok_type = TT_KEYWORD if id_str in KEYWORDS else TT_IDENTIFIER
 		return Token(tok_type, id_str, pos_start, self.pos)
 
 	def make_not_equals(self):
