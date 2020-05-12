@@ -121,7 +121,9 @@ KEYWORDS = [
 	'or',
 	'not',
 	'if',
-
+	'then',
+	'elif',
+	'else'
 ]
 
 class Token:
