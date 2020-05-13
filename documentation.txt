@@ -1,0 +1,28 @@
+VARIABLES:
+  use  # to declare a variable. for example:
+    # a = 5
+
+  to use the variable just type in the name for example:
+  # a = 5
+  a + 2
+
+  should return a 7.
+
+MATH OPERATIONS:
+
+  > Grater than
+  < Less than
+  == equivalant
+  + plus
+  - minus
+  * multiply
+  / divide
+  ^ power (for example 5^2 would return 25)
+
+  NOTE: in your calculations you can use parenthisis. I* uses the standard order of operations: BIDMAS
+
+  IF/ELSE/ELIF statements:
+    'if' condition 'then' code to execute 'elif' condition 'then' code to execute 'else' code to execute
+
+    example if statement:
+      if 5 == 6 then # a = 6 elif 5 > 6 then # a = 25 else # a = 6
