@@ -25,6 +25,11 @@ IF expr							 : KEYWORD: If expr KEYWORD: then expr
 												 			(KEYWORD: elif expr KEYWORD: then expr)*
 															(KEYWORD: else expr)?
 
+for-expr		: KEYWORD:FOR IDENTIFIER EQ expr KEYWORD:TO expr
+									(KEYWORD:STEP expr)? KEYWORD:THEN expr
+
+while-expr	: KEYWORD:WHILE expr KEYWORD:THEN expr
+
 HIGHEST PRIORITY RULES
 
 NOTE: YOU CAN EDIT THIS FILE IT WILL HAVE NO IMPACT ON ANY OF THE PROGRAMS FUNCTIONS
