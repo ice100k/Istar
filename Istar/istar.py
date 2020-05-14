@@ -117,7 +117,7 @@ KEYWORDS = [
 	'if',
 	':',
 	'elif',
-	'else'
+	'else:'
 ]
 
 class Token:
