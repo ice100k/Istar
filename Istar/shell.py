@@ -21,10 +21,8 @@ def clear():
         _ = os.system('clear')
 
 #<<<<<<<<<<<<<<<<<RUNTIME>>>>>>>>>>>>>>>>>>>
-
 while True:
-
-	text = input(">>> ")
+	text = input('>>> ')
 
 	if text == "Admin:Terminate":
 		sys.exit()
@@ -82,7 +80,11 @@ while True:
 
 	else:
 
+
+		if text.strip() == "": continue
 		result, error = istar.run('<stdin>', text)
 
-		if error: print("[Istar] " + error.as_string())
-		elif result: print("[Istar] " + str(result))
+		if error:
+			print(error.as_string())
+		elif result:
+				print("[Istar] " + str(repr(result)))
