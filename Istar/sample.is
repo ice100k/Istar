@@ -2,4 +2,8 @@
 
 var a = 5
 
+funct arrowfunction(oneparam) -> log(oneparam)
+
+arrowfunction("test")
+
 log(a + 5)
