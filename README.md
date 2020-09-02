@@ -12,19 +12,15 @@ you need python 3.7 to use the language itself
 The IDE is loacated in the ideApplication folder
 In the idle ideApplication folder you will find different builds to fit your needs
 
-Do not go in the folder "IDE" it jusr contains some javascript that made up the ide!
 
-index.html is the documentation for I* (https://ice100k.github.io/Istar/index.html)
-
-the recources folder is full of icons and pictures.
-
-and finaly in the Istar folder is the scource code for I*.
+In the I* folder is where you will find all the main stuff for I* like the files you need to setup a project and whatnot.
 in Istar you will find the following files:
-grammar.txt
 
 istar.py
 
 shell.py
+
+strings_with_arrows.py
 
 sample.is
 
